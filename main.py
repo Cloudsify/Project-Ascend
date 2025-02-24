@@ -43,6 +43,8 @@ class Bot(commands.Bot):
         print("---------------------------")
 
         await self.load_cogs()
+        await self.tree.sync()
+        print("Slash commands synchronized.")
 
     async def load_cogs(self) -> None:
         """
