@@ -3,7 +3,7 @@ Project Ascend's Discord bot, Written and mainted by @Cloudsify
 
 github.com/Cloudsify
 """
-import discord, os, platform, sys, json
+import discord, os, platform, sys, json, random
 from discord.ext import commands, tasks
 
 """
@@ -72,6 +72,14 @@ class Bot(commands.Bot):
 
         if not extensions_found:
             Logger.warning("No cogs were found.. The bot won't do much without them!")
+
+    @tasks.loop(minutes=1.0)
+    async def status_task(self) -> None:
+        """
+        Setup the game status task of the bot.
+        """
+        statuses = ["Protecting Project Ascend's Discord Server", "Maintained & Developed by Cloudsify"]
+        await self.change_presence(activity=discord.Game(random.choice(statuses)))
 
 bot = Bot()
 bot.run(config['token'])
