@@ -9,7 +9,7 @@ from discord.ext import commands, tasks
 """
 Our custom imports, Utils and any other things we need
 """
-from Utils import Logger
+from Utils import Logger, EmbedBuilder
 
 if not os.path.isfile(f"{os.path.realpath(os.path.dirname(__file__))}/config.json"):
     sys.exit("'config.json' not found! Please add it and try again.")
@@ -82,6 +82,20 @@ class Bot(commands.Bot):
         """
         statuses = ["Protecting Project Ascend's Discord Server", "Maintained & Developed by Cloudsify"]
         await self.change_presence(activity=discord.Game(random.choice(statuses)))
+
+    async def on_member_join(self, member):
+        channel = self.get_channel(1330613802357624892)
+        data = {
+            'title': "Project Ascend",
+            'description': f"Welcome {member.mention}  To Project Ascend / Est. 2025. Please take a look at:",
+            'field_value': "<#1200471730225938462>",
+            'field_value_two': "<#1330613794531053598>",
+            'field_value_three': "<#1330613798700322847>",
+            'field_isInline': True,
+            'color': 0xf74545
+        }
+        embed = EmbedBuilder.createEmbed(data)
+        await channel.send(embed=embed)
 
 bot = Bot()
 bot.run(config['token'])

@@ -15,8 +15,12 @@ def createEmbed(content):
     author_name = content.get('author_name')
     author_url = content.get('author_url')
     author_icon_url = content.get('author_icon_url')
-    field_name = content.get('field_name')
-    field_value = content.get('field_value')
+    field_name = content.get('field_name', "")
+    field_value = content.get('field_value', "")
+    field_name_two = content.get('field_name', "")
+    field_value_two = content.get('field_value_two', "")
+    field_name_three = content.get('field_name_three', "")
+    field_value_three = content.get('field_value_three', "")
     field_isInline = content.get('field_is_inline', False)
     footer_text = content.get('footer_text')
 
@@ -34,10 +38,22 @@ def createEmbed(content):
             icon_url=author_icon_url if author_icon_url else None
         )
 
-    if field_name and field_value:
+    if field_name or field_value:
         embed.add_field(
             name=field_name,
             value=field_value,
+            inline=field_isInline
+        )
+    if field_name_two or field_value_two:
+        embed.add_field(
+            name=field_name_two,
+            value=field_value_two,
+            inline=field_isInline
+        )
+    if field_name_three or field_value_three:
+        embed.add_field(
+            name=field_name_three,
+            value=field_value_three,
             inline=field_isInline
         )
 
