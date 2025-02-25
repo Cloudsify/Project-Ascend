@@ -1,4 +1,5 @@
 {
   "token": "TOKEN-GOES-HERE",
+  "TRACKER_GG_API_KEY": "TRACLER-GG-API-KEY-HERE",
   "debug": false
 }
